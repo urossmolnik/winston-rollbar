@@ -1,4 +1,4 @@
-# winston-transport-rollbar [![Build Status](https://secure.travis-ci.org/Ideame/winston-rollbar.png)](http://travis-ci.org/Ideame/winston-rollbar)
+# winston-transport-rollbar [![Build Status](https://secure.travis-ci.org/GorillaStack/winston-rollbar.png)](http://travis-ci.org/GorillaStack/winston-rollbar)
 
 Forked from https://github.com/Ideame/winston-rollbar and updated to support latest reporter and maintain longer term.
 

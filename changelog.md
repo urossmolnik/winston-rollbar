@@ -1,3 +1,9 @@
+0.6.2 / 2016-08-23
+==================
+  * updated rollbar reference to 0.6.2
+  * using `reportMessageWithPayloadData` when logging messages, rather than just `reportMessage`
+  * updating to es6 and transpiling prior to publish
+
 0.2.0 / 2015-08-22
 ==================
   * updated rollbar reference to 0.5.6 (PR by @pcothenet)

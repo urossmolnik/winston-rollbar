@@ -1,12 +1,12 @@
 {
-  "name": "winston-rollbar",
-  "description": "A Rollbar transport for winston",
-  "version": "0.2.0",
-  "author": "Juan Pablo Garcia Dalolla <juanpablogarcia@gmail.com> (http://jpgarcia.com.ar)",
+  "name": "winston-transport-rollbar",
+  "description": "An updated and actively maintained rollbar transport for winston",
+  "version": "0.6.2",
+  "author": "Elliott Spira <elliottspira@gmail.com> (https://gorillastack.com)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ideame/winston-rollbar.git"
+    "url": "https://github.com/GorillaStack/winston-rollbar.git"
   },
   "keywords": [
     "logging",
@@ -16,17 +16,17 @@
     "rollbar"
   ],
   "dependencies": {
-    "rollbar": "0.5.6"
+    "rollbar": "0.6.2"
   },
   "devDependencies": {
     "vows": "0.8.1",
-    "winston": "0.6.2"
+    "winston": "^1.1.0"
   },
   "main": "./lib/winston-rollbar",
   "scripts": {
     "test": "vows test/*-test.js --spec"
   },
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.12.0"
   }
 }

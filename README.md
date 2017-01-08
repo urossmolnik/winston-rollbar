@@ -8,7 +8,7 @@ A [rollbar][1] transport for [winston][0].
 
 ``` sh
   $ npm install winston
-  $ npm install winston-rollbar
+  $ npm install winston-transport-rollbar
 ```
 
 ## Usage es5

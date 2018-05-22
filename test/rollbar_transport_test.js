@@ -1,23 +1,18 @@
-/*
- * winston-rollbar-test.js: Tests for instances of the Rollbar transport
- *
- * (C) 2011 Juan Pablo Garcia Dalolla
- * MIT LICENSE
- */
-var vows = require('vows');
-var assert = require('assert');
-var winston = require('winston');
-var helpers = require('winston/test/helpers');
-var Rollbar = require('../lib/winston-rollbar').Rollbar;
+const vows = require('vows');
+const assert = require('assert');
+const winston = require('winston');
+const helpers = require('winston/test/helpers');
+const Rollbar = require('../lib/rollbar_transport').Rollbar;
+
 
 function assertRollbar (transport) {
     assert.instanceOf(transport, Rollbar);
     assert.isFunction(transport.log);
 }
 
-var transport = new (winston.transports.Rollbar)({ rollbarAccessToken: '8802be7c990a4922beadaaefb6e0327b' });
+var transport = new (winston.transports.Rollbar)({ rollbarConfig: { accessToken: '8802be7c990a4922beadaaefb6e0327b' } });
 
-vows.describe('winston-rollbar').addBatch({
+vows.describe('rollbar_transport').addBatch({
     "An instance of the Rollbar Transport": {
         "should have the proper methods defined": function () {
             assertRollbar(transport);

@@ -26,15 +26,23 @@ A [rollbar][1] transport for [winston][0].
 ## Usage es6
 ``` js
   import winston from 'winston';
-  import wr from 'winston-transport-rollbar';
+  import { Rollbar } from 'winston-transport-rollbar';
 
   winston.add(winston.transports.Rollbar, options);
+  // or
+  const logger = new winston.Logger({ transports: [new Rollbar({
+      rollbarConfig: {
+        accessToken: serverAccessToken,
+        environment: environment,
+        reportLevel: reportLevel,
+      },
+    })]
+  });
 ```
 
 The Rollbar transport uses [node-rollbar](https://github.com/rollbar/node_rollbar) behind the scenes.  Options are the following:
 
-* **rollbarAccessToken**:   Rollbar post server item access token.
-* **rollbarConfig**:        Rollbar configuration ([more info](https://rollbar.com/docs/notifier/node_rollbar/#configuration-reference)) (optional).
+* **rollbarConfig**:        Rollbar configuration ([more info](https://rollbar.com/docs/notifier/node_rollbar/#configuration-reference)) (mandatory, must contain rollbarAccessToken)
 * **metadataAsRequest**:    Uses metadata object as Rollbar's request parameter. (default: **false** will send for **meta.req** if provided)
 * **level**:                Level of messages this transport should log. (default: **warn**).
 * **silent**:               Boolean flag indicating whether to suppress output (default: **false**).

@@ -11,19 +11,8 @@ A [rollbar][1] transport for [winston][0].
   $ npm install winston-transport-rollbar
 ```
 
-## Usage es5
-``` js
-  var winston = require('winston');
+## ES6 usage
 
-  //
-  // Requiring `winston-rollbar` will expose
-  // `winston.transports.Rollbar`
-  //
-  require('winston-transport-rollbar').Rollbar;
-
-  winston.add(winston.transports.Rollbar, options);
-```
-## Usage es6
 ``` js
   import winston from 'winston';
   import { Rollbar } from 'winston-transport-rollbar';
@@ -40,7 +29,23 @@ A [rollbar][1] transport for [winston][0].
   });
 ```
 
-The Rollbar transport uses [node-rollbar](https://github.com/rollbar/node_rollbar) behind the scenes.  Options are the following:
+## ES5 usage
+
+``` js
+  var winston = require('winston');
+
+  //
+  // Requiring `winston-rollbar` will expose
+  // `winston.transports.Rollbar`
+  //
+  require('winston-transport-rollbar').Rollbar;
+
+  winston.add(winston.transports.Rollbar, options);
+```
+
+## Options
+
+The Rollbar transport uses the universal [rollbar.js](https://github.com/rollbar/rollbar.js) library behind the scenes.  Options are the following:
 
 * **rollbarConfig**:        Rollbar configuration ([more info](https://rollbar.com/docs/notifier/node_rollbar/#configuration-reference)) (mandatory, must contain rollbarAccessToken)
 * **metadataAsRequest**:    Uses metadata object as Rollbar's request parameter. (default: **false** will send for **meta.req** if provided)

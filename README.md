@@ -16,7 +16,7 @@ A [rollbar][1] transport for [winston][0].
   var winston = require('winston');
 
   //
-  // Requiring `winston-rollbar` will expose
+  // Requiring `winston-transport-rollbar` will expose
   // `winston.transports.Rollbar`
   //
   require('winston-transport-rollbar').Rollbar;

@@ -1,26 +1,65 @@
-const vows = require('vows');
 const assert = require('assert');
-const winston = require('winston');
-const helpers = require('winston/test/helpers');
-const Rollbar = require('../lib/rollbar_transport').Rollbar;
+const { LEVEL, MESSAGE } = require('triple-beam');
+const { Rollbar } = require('../lib/rollbar_transport');
 
+let instance;
 
-function assertRollbar (transport) {
-    assert.instanceOf(transport, Rollbar);
-    assert.isFunction(transport.log);
-}
-
-var transport = new (winston.transports.Rollbar)({ rollbarConfig: { accessToken: '8802be7c990a4922beadaaefb6e0327b' } });
-
-vows.describe('rollbar_transport').addBatch({
-    "An instance of the Rollbar Transport": {
-        "should have the proper methods defined": function () {
-            assertRollbar(transport);
-        },
-        "the log() method": helpers.testNpmLevels(transport, "should log messages to Rollbar", function (ign, err, logged) {
-            if (err) throw err;
-            assert.isTrue(!err);
-            assert.isTrue(logged);
-        })
+beforeEach(function () {
+  instance = new Rollbar({
+    rollbarConfig: {
+      accessToken: 'replace_to_test'
     }
-}).export(module);
+  });
+});
+
+describe('.log()', function () {
+  
+  it('should be present', function () {
+    assert.ok(instance.log);
+    assert.equal('function', typeof instance.log);
+  });
+
+  it('(with no callback) should return true', function () {
+    let info = {
+      level: 'debug',
+      message: 'foo'
+    };
+
+    info[LEVEL] = info.level;
+    info[MESSAGE] = JSON.stringify(info);
+    let result = instance.log(info);
+    assert(true, result);
+  });
+
+  it('(with callback) should return true', function (done) {
+    let info = {
+      level: 'debug',
+      message: 'foo'
+    };
+
+    info[LEVEL] = info.level;
+    info[MESSAGE] = JSON.stringify(info);
+    let result = instance.log(info, function () {
+      assert(true, result);
+      done();
+    });
+  });
+
+});
+
+describe('events', function () {
+  it('should emit the "logged" event', function (done) {
+    instance.once('logged', function (info) {
+      done();
+    });
+
+    var info = {
+      level: 'debug',
+      message: 'foo'
+    };
+
+    info[LEVEL] = info.level;
+    info[MESSAGE] = JSON.stringify(info);
+    instance.log(info);
+  });
+});

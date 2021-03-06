@@ -13,10 +13,10 @@ beforeEach(function () {
 });
 
 describe('.log()', function () {
-  
+
   it('should be present', function () {
     assert.ok(instance.log);
-    assert.equal('function', typeof instance.log);
+    assert.strictEqual('function', typeof instance.log);
   });
 
   it('(with no callback) should return true', function () {
@@ -49,8 +49,11 @@ describe('.log()', function () {
 
 describe('events', function () {
   it('should emit the "logged" event', function (done) {
-    instance.once('logged', function (info) {
-      done();
+    this.timeout(5000);
+    const promise = new Promise((res) => {
+      instance.once('logged', function (info) {
+        res();
+      });
     });
 
     var info = {
@@ -61,5 +64,6 @@ describe('events', function () {
     info[LEVEL] = info.level;
     info[MESSAGE] = JSON.stringify(info);
     instance.log(info);
+    return promise;
   });
 });
